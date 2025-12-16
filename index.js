@@ -4,9 +4,9 @@ const HOST = "host";
 const PORT = "port";
 const USERNAME = "username";
 const PASSWORD = "password";
-const isSticky = true; // set this to false if you are using rotating ports 9000 - 9010
+const IS_STICKY = true; // set this to false if you are using rotating ports 9000 - 9010
 
-const COUNTRY = "gb"; // add country code here
+const COUNTRY = "us"; // add country code here eg: US, RU, CA ETC
 const STICKY_LIFETIME = 10; // set lifetime for sticky in minutes
 const WORKERS = 1; // set the number of worker
 
@@ -15,7 +15,7 @@ const KEYWORDS = ["best books", "best country"];
 function buildUsername(workerId) {
   const sessionId = `worker${workerId}${Date.now()}`;
 
-  if (isSticky) {
+  if (IS_STICKY) {
     return (
       `${USERNAME}` +
       `-type-residential` +
