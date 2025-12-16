@@ -4,22 +4,33 @@ const HOST = "host";
 const PORT = "port";
 const USERNAME = "username";
 const PASSWORD = "password";
+const isSticky = true; // set this to false if you are using rotating ports 9000 - 9010
 
-const COUNTRY = "ru";
-const STICKY_LIFETIME = 10;
-const WORKERS = 1;
+const COUNTRY = "gb"; // add country code here
+const STICKY_LIFETIME = 10; // set lifetime for sticky in minutes
+const WORKERS = 1; // set the number of worker
 
-const KEYWORDS = ["running shoes", "best books"];
+const KEYWORDS = ["best books", "best country"];
 
 function buildUsername(workerId) {
   const sessionId = `worker${workerId}${Date.now()}`;
-  return (
-    `${USERNAME}` +
-    `-type-residential` +
-    `-country-${COUNTRY}` +
-    `-session-${sessionId}` +
-    `-lifetime-${STICKY_LIFETIME}`
-  );
+
+  if (isSticky) {
+    return (
+      `${USERNAME}` +
+      `-type-residential` +
+      `-country-${COUNTRY}` +
+      `-session-${sessionId}` +
+      `-lifetime-${STICKY_LIFETIME}`
+    );
+  } else {
+    return (
+      `${USERNAME}` +
+      `-type-residential` +
+      `-country-${COUNTRY}` +
+      `-lifetime-${STICKY_LIFETIME}`
+    );
+  }
 }
 
 async function safeGoto(page, url) {
