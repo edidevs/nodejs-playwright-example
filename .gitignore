@@ -23,6 +23,3 @@ Thumbs.db
 # VSCode
 .vscode/
 
-# Optional: Ignore compiled *.js if mixed with .ts
-*.js
-*.js.map
